@@ -48,7 +48,7 @@ class CrudGen[T: SQLModel]:
 
     def get_by_field(self, field: str, value):
         statement = select(self.model).where(getattr(self.model, field) == value)
-        local_data = self.session.exec(statement).first()
+        local_data = self.session.exec(statement)
 
         if not local_data:
             raise ValueError(f"{self.model.__name__} Not Found")
