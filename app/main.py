@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from core.database import create_db_and_tables
+from .core import create_db_and_tables
 
 
 @asynccontextmanager

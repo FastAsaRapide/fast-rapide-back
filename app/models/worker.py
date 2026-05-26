@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class Worker(User, table=True):
-    id_woker: int = Field(default=None, primary_key=True)
+    id_worker: int = Field(default=None, primary_key=True)
     cv: str | None = None
     skills: list[str] = Field(sa_column=Column(JSON), default=[])
     posts: list["Post"] = Relationship(back_populates="workers", link_model=Application)
