@@ -25,3 +25,6 @@ class PostService:
             return self._repository.update(id, updated_data)
         except ValueError as e:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+
+    async def list_posts(self) -> list[Post]:
+        return list(self._repository.find_all())
