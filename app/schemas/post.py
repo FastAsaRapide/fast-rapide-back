@@ -6,7 +6,7 @@ from .worker import WorkerOut
 class PostIn(BaseModel):
     title: str | None = None
     context: str | None = None
-    is_open: bool = False
+    is_open: bool = True
     recruiter_id: int
 
 

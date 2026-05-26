@@ -1,0 +1,27 @@
+from ..dependencies import SessionDep
+from fastapi import status, HTTPException
+from ..models import Post
+from ..repositories import CrudGen
+from ..schemas import PostIn
+
+
+class PostService:
+    def __init__(self, session: SessionDep) -> None:
+        self._repository = CrudGen(Post, session)
+
+    async def create_post(self, data: PostIn) -> Post:
+        try:
+            new_data = Post(**data.model_dump())
+            return self._repository.add(new_data)
+        except Exception as e:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+
+    async def list_posts(self) -> list[Post]:
+        return list(self._repository.find_all())
+
+    async def close_post(self, id: int):
+        try:
+            updated_data = Post(recruiter_id=id, is_open=False)
+            return self._repository.update(id, updated_data)
+        except ValueError as e:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
