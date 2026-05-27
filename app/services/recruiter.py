@@ -1,7 +1,7 @@
 from ..dependencies import SessionDep
 from ..repositories import CrudGen
-from ..models import Recruiter
-from ..schemas import RecruiterIn, PostIn, ApplicationIn
+from ..core import Recruiter
+from ..schemas import RecruiterCreate, PostCreate, ApplicationCreate
 from fastapi import status, HTTPException
 from .post import PostService
 from .application import ApplicationService
@@ -13,17 +13,17 @@ class RecruiterService:
         self._post_service = PostService(session)
         self._application_service = ApplicationService(session)
 
-    async def register(self, data: RecruiterIn) -> Recruiter:
+    async def register(self, data: RecruiterCreate) -> Recruiter:
         try:
             new_data = Recruiter(**data.model_dump())
             return self._repository.add(new_data)
         except Exception as e:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
-    async def create_post(self, data: PostIn):
+    async def create_post(self, data: PostCreate):
         return self._post_service.create_post(data)
 
-    async def validate_application(self, data: ApplicationIn):
+    async def validate_application(self, data: ApplicationCreate):
         return self._application_service.validate_application(data)
 
     async def close_post(self, id: int):

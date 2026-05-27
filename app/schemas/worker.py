@@ -1,5 +1,4 @@
 from .user import UserBase
-from .post import PostOut
 
 
 class WorkerBase(UserBase):
@@ -7,10 +6,9 @@ class WorkerBase(UserBase):
     skills: list[str] = []
 
 
-class WorkerIn(WorkerBase):
+class WorkerCreate(WorkerBase):
     password: str | None = None
 
 
-class WorkerOut(WorkerBase):
+class WorkerResponse(WorkerBase):
     id_worker: int
-    posts: list[PostOut]

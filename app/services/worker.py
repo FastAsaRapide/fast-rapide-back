@@ -1,7 +1,7 @@
 from ..dependencies import SessionDep
 from ..repositories import CrudGen
-from ..models import Worker
-from ..schemas import WorkerIn, ApplicationIn
+from ..core import Worker
+from ..schemas import WorkerCreate, ApplicationCreate
 from fastapi import status, HTTPException
 from .post import PostService
 from .application import ApplicationService
@@ -13,7 +13,7 @@ class WorkderService:
         self._post_service = PostService(session)
         self._application_service = ApplicationService(session)
 
-    async def register(self, data: WorkerIn) -> Worker:
+    async def register(self, data: WorkerCreate) -> Worker:
         try:
             new_data = Worker(**data.model_dump())
             return self._repository.add(new_data)
@@ -23,5 +23,5 @@ class WorkderService:
     async def list_posts(self):
         return self._post_service.list_posts()
 
-    async def applied_post(self, data: ApplicationIn):
+    async def applied_post(self, data: ApplicationCreate):
         return self._application_service.applied_post(data)

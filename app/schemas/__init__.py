@@ -1,7 +1,5 @@
-from .application import ApplicationIn, ApplicationOut
-from .post import PostIn, PostOut
-from .recruiter import RecruiterIn, RecruiterOut
-from .worker import WorkerIn, WorkerOut
-
-RecruiterOut.model_rebuild()
-PostOut.model_rebuild()
+from .application import ApplicationCreate, ApplicationResponse
+from .post import  PostCreate, PostSimpleResponse
+from .recruiter import RecruiterCreate, RecruiterSimpleResponse
+from .worker import WorkerCreate, WorkerResponse
+from .relation import PostResponse, RecruiterResponse

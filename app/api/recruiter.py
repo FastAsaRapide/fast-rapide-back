@@ -1,15 +1,16 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from ..services import RecruiterService
-from ..schemas import RecruiterIn, RecruiterOut
+from ..schemas import RecruiterCreate, RecruiterResponse
 from typing import Annotated
 
 
 router = APIRouter(prefix="/recruiter", tags=["Recruiter"])
 
 
-@router.post("/", response_model=RecruiterOut)
+@router.post("/", response_model=RecruiterResponse, status_code=status.HTTP_201_CREATED)
 async def register(
-    recruiter: RecruiterIn, recruiter_service: Annotated[RecruiterService, Depends()]
+    recruiter: RecruiterCreate,
+    recruiter_service: Annotated[RecruiterService, Depends()],
 ):
-    return recruiter_service.register(recruiter)
+    return await recruiter_service.register(recruiter)
     ...

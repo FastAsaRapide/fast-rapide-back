@@ -1,15 +1,15 @@
 from ..dependencies import SessionDep
 from fastapi import status, HTTPException
-from ..models import Post
+from ..core import Post
 from ..repositories import CrudGen
-from ..schemas import PostIn
+from ..schemas import PostCreate
 
 
 class PostService:
     def __init__(self, session: SessionDep) -> None:
         self._repository = CrudGen(Post, session)
 
-    async def create_post(self, data: PostIn) -> Post:
+    async def create_post(self, data: PostCreate) -> Post:
         try:
             new_data = Post(**data.model_dump())
             return self._repository.add(new_data)

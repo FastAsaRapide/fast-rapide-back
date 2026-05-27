@@ -1,14 +1,14 @@
 from pydantic import BaseModel
-from .worker import WorkerOut
-from .post import PostOut
+from .worker import WorkerResponse
+from .relation import PostResponse
 
 
-class ApplicationIn(BaseModel):
+class ApplicationCreate(BaseModel):
     worker_id: int
     post_id: int
 
 
-class ApplicationOut(BaseModel):
+class ApplicationResponse(BaseModel):
     is_validated: bool
-    worker: WorkerOut
-    post: PostOut
+    worker: WorkerResponse
+    post: PostResponse
