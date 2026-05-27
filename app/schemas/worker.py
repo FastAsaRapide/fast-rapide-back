@@ -1,4 +1,5 @@
 from .user import UserBase
+from pydantic import BaseModel
 
 
 class WorkerBase(UserBase):
@@ -10,6 +11,8 @@ class WorkerCreate(WorkerBase):
     password: str | None = None
 
 
-class WorkerResponse(WorkerBase):
+class WorkBaseResponse(BaseModel):
     id_worker: int
-        
+
+
+class WorkerResponse(WorkerBase, WorkBaseResponse): ...

@@ -2,7 +2,7 @@ from .post import PostSimpleResponse
 from .recruiter import RecruiterSimpleResponse
 from typing import Optional
 from .application import ApplicationResponse
-from .worker import WorkerResponse
+from .worker import WorkerResponse, WorkBaseResponse
 
 
 class RecruiterResponse(RecruiterSimpleResponse):
@@ -27,4 +27,8 @@ class ApplicationIncludeParentsResponse(
 
 
 class PostIncludeWorkerResponse(PostSimpleResponse):
+    applications: list[ApplicationIncludeWorkerResponse]
+
+
+class WorkIncludePostResponse(WorkBaseResponse):
     applications: list[ApplicationIncludeWorkerResponse]

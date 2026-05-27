@@ -6,7 +6,8 @@ class ApplicationCreate(BaseModel):
     post_id: int
 
 
-class ApplicationResponse(BaseModel):
+
+class ApplicationResponse(ApplicationCreate):
     is_validated: bool
     applied_at: datetime
 

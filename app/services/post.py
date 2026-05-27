@@ -17,7 +17,7 @@ class PostService:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
     async def list_posts_by_recruiter(self, id: int) -> list[Post]:
-        return list(self._repository.get_by_field("recruiter_id", id))
+        return list(self._repository.get_by_field("recruiter_id", id, "id_post"))
 
     async def close_post(self, recruiter_id: int, id: int):
         try:

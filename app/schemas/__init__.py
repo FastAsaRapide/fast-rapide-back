@@ -7,4 +7,5 @@ from .relation import (
     RecruiterResponse,
     ApplicationIncludeParentsResponse,
     PostIncludeWorkerResponse,
+    WorkIncludePostResponse,
 )

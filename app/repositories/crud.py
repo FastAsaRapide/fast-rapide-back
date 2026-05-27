@@ -19,7 +19,7 @@ class CrudGen[T: SQLModel]:
         return data
 
     def find_all(self, field: str) -> Sequence[T]:
-        statement = select(self.model).order_by(getattr(self.model, field).asc())
+        statement = select(self.model).order_by(getattr(self.model, field).desc())
         return self.session.exec(statement).all()
 
     def get_one(self, id: ID) -> T:
@@ -46,11 +46,11 @@ class CrudGen[T: SQLModel]:
         self.session.commit()
         return True
 
-    def get_by_field(self, field: str, value):
+    def get_by_field(self, field: str, value, column: str = ""):
         statement = (
             select(self.model)
             .where(getattr(self.model, field) == value)
-            .order_by(getattr(self.model, field).desc())
+            .order_by(getattr(self.model, column).desc())
         )
         local_data = self.session.exec(statement)
 
