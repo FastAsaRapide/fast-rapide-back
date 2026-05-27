@@ -27,4 +27,4 @@ class PostService:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
 
     async def list_posts(self) -> list[Post]:
-        return list(self._repository.find_all())
+        return list(self._repository.find_all("id_post"))

@@ -20,11 +20,13 @@ class ApplicationService:
     async def validate_application(self, data: ApplicationCreate) -> Application:
         statement = select(Application).where(
             Application.post_id == data.post_id,
-            Application.worker_id == Application.worker_id,
+            Application.worker_id == data.worker_id,
         )
         session = self._repository.session
 
         application = session.exec(statement).first()
+
+        print(data, application, sep="\n")
 
         if not application:
             raise HTTPException(

@@ -6,8 +6,9 @@ from ..schemas import (
     PostCreate,
     PostResponse,
     ApplicationCreate,
-    ApplicationResponse,
+    
     PostIncludeWorkerResponse,
+    ApplicationIncludeParentsResponse,
 )
 from typing import Annotated
 
@@ -50,7 +51,7 @@ async def create_post(
     return await recruiter_service.create_post(post)
 
 
-@router.put("/validate-application", response_model=ApplicationResponse)
+@router.put("/validate-application", response_model=ApplicationIncludeParentsResponse)
 async def validate_application(
     application: ApplicationCreate,
     recruiter_service: Annotated[RecruiterService, Depends()],

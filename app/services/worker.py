@@ -24,4 +24,4 @@ class WorkderService:
         return await self._application_service.applied_post(data)
 
     def list_workers(self):
-        return self._repository.find_all()
+        return self._repository.find_all("id_worker")

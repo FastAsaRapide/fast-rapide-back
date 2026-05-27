@@ -33,4 +33,4 @@ class RecruiterService:
         return await self._post_service.list_posts_by_recruiter(id)
 
     def lists_recruiter(self):
-        return self._repository.find_all()
+        return self._repository.find_all("id_recruiter")

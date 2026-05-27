@@ -1,6 +1,4 @@
 from pydantic import BaseModel
-from .worker import WorkerResponse
-
 
 class PostBase(BaseModel):
     title: str | None = None
@@ -16,5 +14,3 @@ class PostSimpleResponse(PostBase):
     id_post: int
 
 
-class PostIncludeWorkerResponse(PostSimpleResponse):
-    workers: list["WorkerResponse"]

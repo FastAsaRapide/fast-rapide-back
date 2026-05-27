@@ -12,3 +12,4 @@ class WorkerCreate(WorkerBase):
 
 class WorkerResponse(WorkerBase):
     id_worker: int
+        
