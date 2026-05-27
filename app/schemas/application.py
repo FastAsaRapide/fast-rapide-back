@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from .worker import WorkerResponse
-from .relation import PostResponse
+from .post import PostSimpleResponse
 
 
 class ApplicationCreate(BaseModel):
@@ -11,4 +11,4 @@ class ApplicationCreate(BaseModel):
 class ApplicationResponse(BaseModel):
     is_validated: bool
     worker: WorkerResponse
-    post: PostResponse
+    post: PostSimpleResponse

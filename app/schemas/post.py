@@ -14,4 +14,7 @@ class PostCreate(PostBase):
 
 class PostSimpleResponse(PostBase):
     id_post: int
+
+
+class PostIncludeWorkerResponse(PostSimpleResponse):
     workers: list["WorkerResponse"]
