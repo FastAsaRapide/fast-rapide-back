@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from .core import create_db_and_tables
-from .api import recruiter
+from .api import recruiter, worker, post
 
 
 @asynccontextmanager
@@ -14,3 +14,5 @@ app = FastAPI(lifespan=lifespan, title="FASTASARAPIDE")
 
 
 app.include_router(recruiter.router)
+app.include_router(worker.router)
+app.include_router(post.router)

@@ -64,5 +64,4 @@ async def close_post(
     recruiter_service: Annotated[RecruiterService, Depends()],
     recruiter: Annotated[int, Depends(get_recruiter_id)],
 ):
-    print(f"id = {id}, recruit={recruiter}")
     return await recruiter_service.close_post(recruiter, id)

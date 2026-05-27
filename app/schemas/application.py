@@ -1,6 +1,5 @@
 from pydantic import BaseModel
-from .worker import WorkerResponse
-from .post import PostSimpleResponse
+from datetime import datetime
 
 
 class ApplicationCreate(BaseModel):
@@ -10,5 +9,4 @@ class ApplicationCreate(BaseModel):
 
 class ApplicationResponse(BaseModel):
     is_validated: bool
-    worker: WorkerResponse
-    post: PostSimpleResponse
+    applied_at: datetime
