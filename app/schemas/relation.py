@@ -21,6 +21,10 @@ class ApplicationIncludeWorkerResponse(ApplicationResponse):
     worker: WorkerResponse
 
 
+class PostResponseIncludeApplicationAndRecruiter(PostResponse):
+    applications: list[ApplicationIncludeWorkerResponse]
+
+
 class ApplicationIncludeParentsResponse(
     ApplicationIncludeWorkerResponse, ApplicationIncludePostResponse
 ): ...

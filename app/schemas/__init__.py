@@ -8,4 +8,5 @@ from .relation import (
     ApplicationIncludeParentsResponse,
     PostIncludeWorkerResponse,
     WorkIncludePostResponse,
+    PostResponseIncludeApplicationAndRecruiter
 )
