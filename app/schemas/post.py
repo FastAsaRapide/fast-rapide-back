@@ -1,6 +1,9 @@
 from pydantic import BaseModel
-from .recruiter import RecruiterOut
-from .worker import WorkerOut
+from typing import TYPE_CHECKING, Optional
+
+if TYPE_CHECKING:
+    from .recruiter import RecruiterOut
+    from .worker import WorkerOut
 
 
 class PostIn(BaseModel):
@@ -12,5 +15,6 @@ class PostIn(BaseModel):
 
 class PostOut(PostIn):
     id_post: int
-    recruiter: RecruiterOut
-    workers: list[WorkerOut]
+    recruiter: Optional["RecruiterOut"]
+    workers: list["WorkerOut"]
+

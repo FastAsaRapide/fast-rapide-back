@@ -1,5 +1,7 @@
 from .user import UserBase
 from .post import PostOut
+   
+    
 class RecruiterIn(UserBase):
     password: str | None = None
 

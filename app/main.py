@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from .core import create_db_and_tables
+from .api import recruiter
 
 
 @asynccontextmanager
@@ -12,6 +13,4 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+app.include_router(recruiter.router)
