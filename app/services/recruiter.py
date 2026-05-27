@@ -21,13 +21,16 @@ class RecruiterService:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
     async def create_post(self, data: PostCreate):
-        return self._post_service.create_post(data)
+        return await self._post_service.create_post(data)
 
     async def validate_application(self, data: ApplicationCreate):
-        return self._application_service.validate_application(data)
+        return await self._application_service.validate_application(data)
 
-    async def close_post(self, id: int):
-        return self._post_service.close_post(id)
+    async def close_post(self, recruiter_id: int, id: int):
+        return await self._post_service.close_post(recruiter_id, id)
 
     async def list_posts(self, id: int):
-        return self._post_service.list_posts_by_recruiter(id)
+        return await self._post_service.list_posts_by_recruiter(id)
+
+    def lists_recruiter(self):
+        return self._repository.find_all()

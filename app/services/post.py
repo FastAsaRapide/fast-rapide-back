@@ -19,9 +19,9 @@ class PostService:
     async def list_posts_by_recruiter(self, id: int) -> list[Post]:
         return list(self._repository.get_by_field("recruiter_id", id))
 
-    async def close_post(self, id: int):
+    async def close_post(self, recruiter_id: int, id: int):
         try:
-            updated_data = Post(recruiter_id=id, is_open=False)
+            updated_data = Post(recruiter_id=recruiter_id, is_open=False)
             return self._repository.update(id, updated_data)
         except ValueError as e:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
