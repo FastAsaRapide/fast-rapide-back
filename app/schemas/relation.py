@@ -6,11 +6,11 @@ from .worker import WorkerResponse, WorkBaseResponse
 
 
 class RecruiterResponse(RecruiterSimpleResponse):
-    posts: list["PostSimpleResponse"]
+    posts: list[PostSimpleResponse]
 
 
 class PostResponse(PostSimpleResponse):
-    recruiter: Optional["RecruiterSimpleResponse"]
+    recruiter: Optional[RecruiterSimpleResponse]
 
 
 class ApplicationIncludePostResponse(ApplicationResponse):
